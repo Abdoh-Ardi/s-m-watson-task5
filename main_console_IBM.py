@@ -1,5 +1,6 @@
 # This is a sample Python script.
 import json
+import sys
 
 import pyttsx3
 import speech_recognition as sr
@@ -30,16 +31,11 @@ try:
     print("session id: " + sessionId + "\n")
 except Exception as ex:
     print("Failed to establish connection: " + repr(ex))
+    sys.exit(1)
 
-
-
-
-# files handling
+#
 engine = pyttsx3.init()  # for tts
-engineToFile = pyttsx3.init() # for mp3 file
 textFile = open("speachToText.txt", "a")  # create & append
-# to store 'texts' for 'speech.mp3'
-store = ""
 
 
 def stt():
@@ -71,7 +67,6 @@ def stt():
 
 
 def ibm(text):
-
     res = assistant.message(
         assistant_id=assisstantID,
         session_id=sessionId,
@@ -79,11 +74,11 @@ def ibm(text):
                'text': text
                }
     ).get_result()
-    print(json.dumps(res, indent=2) + "\n" + "\n")
+    # print(json.dumps(res, indent=2) + "\n" + "\n")
     print(text + "\n")
-
-    # quit command
+    tofile(text + '\n')
     tts(json.loads(json.dumps(res))['output']['generic'][0]['text'])
+    # quit command
     if 'thanks, bye.' == json.loads(json.dumps(res))['output']['generic'][0][
         'text'] or 'thank you for using the Assistant.' == json.loads(json.dumps(res))['output']['generic'][0][
         'text']:
@@ -93,16 +88,9 @@ def ibm(text):
 def tts(text):
     # text to speech
     engine.say(text)
-    tostore(text, store)
     tofile("Assistant: " + text + "\n")
     print("Assistant: " + text + "\n")
     engine.runAndWait()
-
-
-# concat texts for further operations
-def tostore(text, st=store):
-    st = st + text + "\n"
-
 
 # save communication to file
 def tofile(text):
@@ -111,18 +99,9 @@ def tofile(text):
         textFile.flush()
 
 
-# save to speech.mp3
-def ttsTofile(text):
-    engineToFile.save_to_file(text, "speech.mp3")
-    engineToFile.runAndWait()
-
-
 print('wait...')
 
 # launch speech to text first
 stt()
 
-# store values and close
-tofile(store)
-ttsTofile(store)
 textFile.close()
