@@ -9,9 +9,9 @@ packages used: IBM Watson AssistantV2, speech_recognition, pyttsx3, json
 Note: you can give commands for the duration of 5 seconds
 
 # Commands 
- `quit` to exit the program similar commands such as `bye` & `exit` work too
- `tell me a joke`
- `what could you do`
- `who made you`
- `how are you`
+ `quit` to exit the program similar commands such as `bye` & `exit` work too  
+ `tell me a joke`  
+ `what could you do`  
+ `who made you`  
+ `how are you`  
  
