@@ -92,6 +92,7 @@ def tts(text):
     print("Assistant: " + text + "\n")
     engine.runAndWait()
 
+
 # save communication to file
 def tofile(text):
     if textFile.writable():
