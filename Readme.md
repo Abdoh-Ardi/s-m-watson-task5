@@ -15,3 +15,6 @@ Note: you can give commands for the duration of 5 seconds
  `who made you`  
  `how are you`  
  
+ # outputs
+ 1. text file with the conversation
+ 2. audio feedback from the assistant 
