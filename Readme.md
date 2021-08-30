@@ -1,5 +1,5 @@
 # Merge ibm watson with python sst& tts
-this task is part is Smart Methods summer intern  
+this task is part of Smart Methods summer intern  
 packages used: IBM Watson AssistantV2, speech_recognition, pyttsx3, json  
 # Usage  
 1. ~~run the python script or~~ replace the default values at line 10 for your own values  
